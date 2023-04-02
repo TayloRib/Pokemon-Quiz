@@ -1,0 +1,139 @@
+*{
+    font-family: courier, arial, sans-serif;
+    font-size: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.background {
+    background-image: url(assets/pokemon-background.jpg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+img.pokemon {
+    height: 80%;
+    position: absolute;
+    top: 6%;
+    left: 6%;
+    opacity: 80%;
+}
+
+#roundstimer {
+    position: absolute;
+    width: 90%;
+    z-index: 2;
+    right: 6.5%;
+    top: 2%;
+    text-align: end;
+}
+
+.roundstimer {
+    border: 6px solid rgb(44, 114, 188);
+    background-color: rgb(238, 242, 244);
+    border-radius: 10px;
+    padding: 1%;
+    box-shadow: 10px 10px 5px rgba(22, 22, 22, 0.814);
+}
+
+
+
+#menu {
+    position: absolute;
+    width: 30%;
+    z-index: 2;
+    right: 8%;
+    top: 10%;
+}
+
+#easyquiz1, #easyquiz2, #easyquiz3, #easyquiz4, #easyquiz5, #restart {
+    position: absolute;
+    width: 30%;
+    z-index: 2;
+    right: 8%;
+    top: 15%;
+}
+
+
+h1{
+    font-size: 100%;
+}
+
+.title, .easybutton, .hardbutton, .scorebutton, .rulesbutton, .answer1, .answer2, .answer3, .answer4, .restart {
+    display: block;
+    background-color: rgb(238, 242, 244);
+    padding: 3%;
+    border: 6px solid rgb(44, 114, 188);
+    border-radius: 10px;
+    position: relative;
+    font-size: 100%;
+    width: 100%;
+    margin: 5%;
+    box-shadow: 10px 10px 5px rgba(22, 22, 22, 0.814);
+    text-align: left;
+}
+
+.easybutton:hover, .hardbutton:hover, .scorebutton:hover, .rulesbutton:hover {
+    padding: 6%;
+    cursor: pointer;
+    padding-left: 20%;
+    background-color: rgb(17, 52, 111);
+    color: white;
+} 
+
+.restart:hover {
+    padding: 6%;
+    cursor: pointer;
+    background-color: rgb(17, 52, 111);
+    color: white;
+}
+
+.answer1:hover, .answer2:hover, .answer3:hover, .answer4:hover{
+    cursor: pointer;
+}
+
+.rulescontainer:hover .rules{
+    cursor: pointer;
+    display: block;
+}
+
+.rules{
+    display: none;
+}
+
+#rulescontent {
+    font-size: 12px;
+}
+
+.restart {
+    text-align: center;
+}
+
+.easybutton, .hardbutton, .scorebutton, #rules, .answer1, .answer2, .answer3, .answer4 {
+    padding-left: 20%;
+}
+
+.pokeball {
+    width: 25px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: -5px;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    margin: 0;
+    padding: 0px;
+    color: black;
+    line-height: .4em;
+    font-size: 10px;
+}
+
+h1 {
+    text-align: center;
+}

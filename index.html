@@ -1,15 +1,98 @@
-<!-- container for high scores -->
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- container for the countdown timer -->
+<head>
+    <title>Pokémon Quiz</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <img class="background" src="assets/pokemon-background.jpg" />
+</head>
 
-<!-- start button -->
-
-<!-- container for the quiz -->
-<!--    container for the question -->
-<!--    container for the answers -->
-<!--        continer for each answer -->
+<body>
+    <main>
+        <!--Landing Page image-->
+        <img id="pikachu" class="pokemon" src="assets/pikachu.png" alt="black silhouette of a Pikachu" />
+        <!--Rounds Timer and Correct-->
+        <div id="roundstimer" style="display: none;">
+            <button class="roundstimer"><img class="pokeball" src="assets/quickball.png" /> Round: <span id="round">0</span></button>
+            <button class="roundstimer"><img class="pokeball" src="assets/timerball.png" /> Time Left: <span id="seconds">0</span></button>
+            <button class="roundstimer"><img class="pokeball" src="assets/greatball.png" /> Correct: <span id="correct">0</span></button>
+        </div>
+        <!--Restart Button-->
+        <div id="restart" style="display: none;">
+            <button class="title"><h1 id="endmessage">0</h1></button>
+            <button class="restart" onClick="window.location.reload();"><b><img class="pokeball" src="assets/repeatball.png" /> Try Again?</b></button></div>
+        <!--Landing Page Menu-->
+        <div id="menu">
+            <button class="title"><h1>Do you have what it takes to be a Pokémon Master?</h1></button>
+            <button class="easybutton" onclick="hideMenu(); showEasy(); hidePikachu(); showEasyCanvas(); showRoundsTimer(); showBulbaQuiz()"><img class="pokeball" src="assets/pokeball.png" /><b> Easy Mode - Start Quiz</b></button>
+            <button class="hardbutton" data-state="visible"><img class="pokeball" src="assets/masterball.png" /><b> Hard Mode - Start Quiz</b></button>
+            <button class="scorebutton"><img class="pokeball" src="assets/luxuryball.png" /><b> Wins/Losses</b></button>
+            <div class="rulescontainer">
+                <button id="rules" class="rulesbutton" class="title"><img class="pokeball" src="assets/premier ball.png" /> <b>Rules</b></button>
+                <div class="rules"><button id="rulescontent" class="title" >This Quiz is multiple choice consisting of 5 rounds. A wrong answer decreases the timer by 5 seconds. If you complete the quiz without getting a wrong answer, you win!</button></div>
+            </div>
+        </div>
+        <!--Quiz Images-->
+        <div id="pokecanvas" class="pokecanvas" style="display: none;">
+            <img id="bulbasaur" class="pokemon" src="assets/bulbasaur.png" alt="black silhouette of a bulbasaur" />
+            <img id="charmander" class="pokemon" src="assets/charmander.png" alt="black silhouette of a charmander" style="display: none;"/>
+            <img id="squirtle" class="pokemon" src="assets/squirtle.png" alt="black silhouette of a squirtle" style="display: none;"/>
+            <img id="eevee" class="pokemon" src="assets/eevee.png" alt="black silhouette of a eevee" style="display: none;"/>
+            <img id="pikachu2" class="pokemon" src="assets/pikachu2.png" alt="black silhouette of a Pikachu" style="display: none;"/>
+        </div>
+        <!--Round 1-->
+        <div id="easyquiz1" style="display: none;"> 
+            <button class="title"><h1>Who's that Pokémon?</h1></button>
+            <button class="answer1"><b>A: <span class="texta">Charmander</span></b></button>
+            <button class="answer2"><b>B: <span class="textb">Bulbasaur</span></b></button>
+            <button class="answer3"><b>C: <span class="textc">Eevee</span></b></button>
+            <button class="answer4"><b>D: <span class="textd">Squirtle</span></b></button>
+        </div>
+        <!--Round 2-->
+        <div id="easyquiz2" style="display: none;"> 
+            <button class="title"><h1>Who's that Pokémon?</h1></button>
+            <button class="answer1"><b>A: <span class="texta">Pikachu</span></b></button>
+            <button class="answer2"><b>B: <span class="textb">Squirtle</span></b></button>
+            <button class="answer3"><b>C: <span class="textc">Bulbasaur</span></b></button>
+            <button class="answer4"><b>D: <span class="textd">Charmander</span></b></button>
+        </div>
+        <!--Round 3-->
+        <div id="easyquiz3" style="display: none;"> 
+            <button class="title"><h1>Who's that Pokémon?</h1></button>
+            <button class="answer1"><b>A: <span class="texta">Squirtle</span></b></button>
+            <button class="answer2"><b>B: <span class="textb">Pikachu</span></b></button>
+            <button class="answer3"><b>C: <span class="textc">Eevee</span></b></button>
+            <button class="answer4"><b>D: <span class="textd">Charmander</span></b></button>
+        </div>
+        <!--Round 4-->
+        <div id="easyquiz4" style="display: none;"> 
+            <button class="title"><h1>Who's that Pokémon?</h1></button>
+            <button class="answer1"><b>A: <span class="texta">Charmander</span></b></button>
+            <button class="answer2"><b>B: <span class="textb">Bulbasaur</span></b></button>
+            <button class="answer3"><b>C: <span class="textc">Eevee</span></b></button>
+            <button class="answer4"><b>D: <span class="textd">Squirtle</span></b></button>
+        </div>
+        <!--Round 5-->
+        <div id="easyquiz5" style="display: none;"> 
+            <button class="title"><h1>Who's that Pokémon?</h1></button>
+            <button class="answer1"><b>A: <span class="texta">Eevee</span></b></button>
+            <button class="answer2"><b>B: <span class="textb">Pikachu</span></b></button>
+            <button class="answer3"><b>C: <span class="textc">Charmander</span></b></button>
+            <button class="answer4"><b>D: <span class="textd">Bulbasaur</span></b></button>
+        </div>
 
 <!-- end screen -->
 <!--    container for you won vs you scored 0s -->
 <!--    input for name/initials -->
 <!--    save button -->
+    </main>
+    <script src="script.js"></script>
+</body>
+
+<footer>
+    <p>Pokémon © 1995–2023 Nintendo/Creatures Inc./GAME FREAK inc.</p>
+</footer>
+
+</html>

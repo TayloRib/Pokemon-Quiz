@@ -16,7 +16,9 @@ N/A
 Users can click various buttons on the page to start the quiz, view previous user scores, read rules, or clear local storage to reset previous scores. Once the quiz is started the user will have a multiple choice quiz consisting of five rounds with properties that penalize the player for guessing incorrectly. The quiz allows players to enter their name to store name data for score reference.
 
 ## Credits
-N/A
+All images used taken from https://bulbapedia.bulbagarden.net and used under Fair Use (U.S. trademark law).
+
+Pokémon © 1995–2023 Nintendo/Creatures Inc./GAME FREAK inc.
 
 ## License
 Please refer to the license in the repo.

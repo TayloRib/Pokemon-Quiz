@@ -1,4 +1,10 @@
-
+//Global Variable Storage
+var secondsLeft = 30;
+var rounds = 1; 
+var isPlaying = false;
+var countDownTimer;
+var correctAnswer = 0;
+var wrongAnswer = 0;
 var menuEl = document.querySelector("#menu");
 var easyQuiz = document.querySelector("#easyquiz");
 var pikachu = document.querySelector("#pikachu");
@@ -21,29 +27,67 @@ var squirtquiz = document.querySelector("#easyquiz3");
 var eeveequiz = document.querySelector("#easyquiz4");
 var pikaquiz = document.querySelector("#easyquiz5");
 
+//Win Loss Storage
+var wins= localStorage.getItem("Pokemon Quiz Wins") || 0;
+var losses = localStorage.getItem("Pokemon Quiz Losses") || 0;
+var displayWins = document.querySelector("#wins")
+var displayLosses = document.querySelector("#losses")
+var displayName = document.querySelector("#playername");
 
-var secondsLeft = 30;
-var rounds = 1; 
-var isPlaying = false;
-var countDownTimer;
-var correctAnswer = 0;
-var wrongAnswer = 0;
+displayLosses.textContent=losses;
+displayWins.textContent=wins;
+displayName.textContent=names;
 
-var wins= localStorage.getItem("wins")|| 0;
-var losses = localStorage.getItem("losses") || 0;
+//Player Name Storage
+var submitName = document.querySelector("#inputname");
+var nameForm = document.querySelector("#storename");
+var enterName = document.querySelector("#entername");
+var playerName = document.querySelector("#playername")
+var names = ["Player"];
 
+//Create and Store Player Name
+function renderName() {
+    playerName.textContent = names;
+}
+
+function init() {
+    var storedNames = JSON.parse(localStorage.getItem("Player Name"));
+    if (storedNames !== null) {
+        names = storedNames;
+    }
+    renderName();
+}
+
+function storePlayerName () {
+    localStorage.setItem("Player Name", JSON.stringify(names));
+}
+
+nameForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    var nameText = submitName.value.trim();
+    if (nameText === "") {
+        return;
+    }
+    names.length =0;
+    names.push(nameText);
+    submitName.value = "";
+    storePlayerName();
+    console.log(names);
+});
+
+init();
 
 //Hide Menu and Display Quiz
 function hideMenu(){
     if (menuEl.style.display === "none") {
         menuEl.style.display = "block";
     } else menuEl.style.display = "none";
-    secondsLeft = 35;
+    secondsLeft = 30;
     rounds = 1;
     correctAnswer = 0;
 }
 
-//Start Easy Quiz
+//Start Easy Game
 function showEasy() {
     document.querySelector("#round").textContent= rounds;
     isPlaying = true;
@@ -54,7 +98,8 @@ function showEasy() {
             clearInterval(countDownTimer);
             seconds.textContent = "0";
             losses++;
-            localStorage.setItem("losses",losses);
+            localStorage.setItem("Pokemon Quiz Losses",losses);
+            displayLosses.textContent = losses;
             quizImg.style.display = "none";
             bulbaquiz.style.display = "none";
             charquiz.style.display = "none";
@@ -67,20 +112,26 @@ function showEasy() {
             clearInterval(countDownTimer);
             restart.style.display = "block";
             endmessage.textContent = "You Won!";
+            wins++;
+            localStorage.setItem("Pokemon Quiz Wins",wins);
+            displayWins.textContent = wins;
         } else if (rounds >= 6) {
             if (wrongAnswer >= 1) {
             clearInterval(countDownTimer);
             restart.style.display = "block";
             endmessage.textContent = "You got " + wrongAnswer + " Pokémon wrong, you lose!";
+            losses++;
+            localStorage.setItem("Pokemon Quiz Losses",losses);
+            displayLosses.textContent = losses;
             }
         } else if ((rounds <= 6) && (correctAnswer <= 6)){
             seconds.textContent = secondsLeft;
             restart.style.display = "none";
         }
-        
     }, 1000);
 }
 
+//Bulbasaur Quiz
 function showBulbaQuiz() {
     if (bulbaquiz.style.display === "none") {
         bulbaquiz.style.display = "block";
@@ -111,6 +162,7 @@ function showBulbaQuiz() {
         });
 }
 
+//Charmander Quiz
 function showCharQuiz() {
     if (charquiz.style.display === "none") {
         charquiz.style.display = "block";
@@ -141,6 +193,7 @@ function showCharQuiz() {
         });
 }
 
+//Squirtle Quiz
 function showSquirtQuiz() {
     if (squirtquiz.style.display === "none") {
         squirtquiz.style.display = "block";
@@ -171,6 +224,7 @@ function showSquirtQuiz() {
         });
 }
 
+//Eevee Quiz
 function showEeveeQuiz() {
     if (eeveequiz.style.display === "none") {
         eeveequiz.style.display = "block";
@@ -201,6 +255,7 @@ function showEeveeQuiz() {
         });
 }
 
+//Pikachu Quiz
 function showPikaQuiz() {
     if (pikaquiz.style.display === "none") {
         pikaquiz.style.display = "block";
@@ -262,104 +317,31 @@ function showPika() {
     } else pikachu2.style.display = "none";
     }
 
+//Hide Landing Page Sprite
 function hidePikachu() {
     if (pikachu.style.display === "none") {
         pikachu.style.display = "block";
     } else pikachu.style.display = "none";
 }
 
+//Show Sprite Area
 function showEasyCanvas() {
     if (quizImg.style.display === "none") {
         quizImg.style.display = "block";
     } else quizImg.style.display = "none";
 }
 
+//Show Rounds, Timer, Correct
 function showRoundsTimer() {
     if (roundsAndTimer.style.display === "none") {
         roundsAndTimer.style.display = "block";
     } else roundsAndTimer.style.display = "none";
 }
 
-
-// define all questions and answers
-
-// define variable for tracking
-//      track time
-//      track questions
-
-// create variables to reference DOM elements
-//      timer
-//      questions
-//      answers
-//      start button
-//      name/initials
-//      save button
-//      high scores container
-
-// function
-//      start quiz
-//          hide start button
-//          show the quiz container
-//          display first question
-//          start timer
-//          display countdown on screen
-
-// function
-//      rendering a question
-//          clear/remove previous question
-//          getting first question
-//          add question to the question container
-//          make button for each answer
-//          add answers to the answers container
-
-// function
-//      handle quiz completion
-//          stop timer
-//          hide quiz container
-//          show end screen
-//          show time remaining as score
-
-// function
-//      handle answer clicks
-//
-//      if
-//      answer is WRONG
-//          subtract time from timer
-//          make sure time is displayed correctly on page
-//          flash wrong answer message (setTimeout)
-//
-//      update question variable to next question
-//      display question on page
-//
-//      if
-//      question is the last question
-//      trigger quiz completion
-
-// function
-//      tracking time
-//          subtract time
-//          update the page
-//
-//      if
-//      timer hits zero
-//          trigger quiz completion
-
-// function
-//      saving high scores
-//          get value of user input (name/initals)
-//          validate input
-//          retreive existing data from local storage
-//          update the high score data
-//          save updated data back to local storage
-//          redirect to start screen after save
-
-// function
-//      listening for key press
-//          check if the key pressed was 'Enter' for saving scores
-//          OPTIONAL check if the key pressed was 'a', 'b', 'c' for answers
-
-// event listeners
-//      click start
-//      click answers
-//      click save score
-//      keyups
+//Remove Local Storage
+function deletePrevious() {
+    localStorage.removeItem("Player Name");
+    localStorage.removeItem("Pokemon Quiz Wins");
+    localStorage.removeItem("Pokemon Quiz Losses");
+    window.location.reload();
+}

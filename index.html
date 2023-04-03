@@ -5,8 +5,8 @@
     <title>Pokémon Quiz</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <img class="background" src="assets/pokemon-background.jpg" />
+    <link rel="stylesheet" href="style.css" />
+    <img class="background" src="assets/pokemon-background.jpg" alt="a blank display that has a question mark and says Pokémon at the bottom"/>
 </head>
 
 <body>
@@ -15,25 +15,48 @@
         <img id="pikachu" class="pokemon" src="assets/pikachu.png" alt="black silhouette of a Pikachu" />
         <!--Rounds Timer and Correct-->
         <div id="roundstimer" style="display: none;">
-            <button class="roundstimer"><img class="pokeball" src="assets/quickball.png" /> Round: <span id="round">0</span></button>
-            <button class="roundstimer"><img class="pokeball" src="assets/timerball.png" /> Time Left: <span id="seconds">0</span></button>
-            <button class="roundstimer"><img class="pokeball" src="assets/greatball.png" /> Correct: <span id="correct">0</span></button>
+            <button class="roundstimer"><img class="pokeball" src="assets/quickball.png" alt="quickball" /> Round: <span id="round">0</span></button>
+            <button class="roundstimer"><img class="pokeball" src="assets/timerball.png" alt="timerball" /> Time Left: <span id="seconds">0</span></button>
+            <button class="roundstimer"><img class="pokeball" src="assets/greatball.png" alt="greatball"/> Correct: <span id="correct">0</span></button>
         </div>
         <!--Restart Button-->
         <div id="restart" style="display: none;">
             <button class="title"><h1 id="endmessage">0</h1></button>
-            <button class="restart" onClick="window.location.reload();"><b><img class="pokeball" src="assets/repeatball.png" /> Try Again?</b></button></div>
+            <!--Submit Form-->
+            <button class="nameform">
+                <form id="storename" method="post">
+                <label for="entername" class="entername"><b>Type your name and hit enter:</b></label>
+                <p></p>
+                <input type="text" placeholder="Ash Ketchum" name="playername" id="inputname" />
+                </form>
+            </button>
+            <button class="restart" onClick="window.location.reload();"><b><img class="pokeball" src="assets/repeatball.png" alt="repeatball"/> Try Again?</b>
+            </button>
+        </div>
         <!--Landing Page Menu-->
         <div id="menu">
-            <button class="title"><h1>Do you have what it takes to be a Pokémon Master?</h1></button>
-            <button class="easybutton" onclick="hideMenu(); showEasy(); hidePikachu(); showEasyCanvas(); showRoundsTimer(); showBulbaQuiz()"><img class="pokeball" src="assets/pokeball.png" /><b> Easy Mode - Start Quiz</b></button>
-            <button class="hardbutton" data-state="visible"><img class="pokeball" src="assets/masterball.png" /><b> Hard Mode - Start Quiz</b></button>
-            <button class="scorebutton"><img class="pokeball" src="assets/luxuryball.png" /><b> Wins/Losses</b></button>
-            <div class="rulescontainer">
-                <button id="rules" class="rulesbutton" class="title"><img class="pokeball" src="assets/premier ball.png" /> <b>Rules</b></button>
-                <div class="rules"><button id="rulescontent" class="title" >This Quiz is multiple choice consisting of 5 rounds. A wrong answer decreases the timer by 5 seconds. If you complete the quiz without getting a wrong answer, you win!</button></div>
-            </div>
+            <button class="title">
+                <h1>Do you have what it takes to be a Pokémon Master?</h1>
+            </button>
+            <button class="easybutton" onclick="hideMenu(); showEasy(); hidePikachu(); showEasyCanvas(); showRoundsTimer(); showBulbaQuiz()">
+                <img class="pokeball" src="assets/pokeball.png" alt="pokeball"/><b> Easy Mode - Start Quiz</b>
+            </button>
+            <button class="hardbutton">
+                <img class="pokeball" src="assets/masterball.png" alt="masterball"/><b> Hard Mode</b> - Comming Soon
+            </button>
+        <!--Scores Container-->
+        <div class="scorescontainer">
+            <button class="scorebutton" onclick="deletePrevious()"><img class="pokeball" src="assets/luxuryball.png" /><b> Player Wins/Losses</b>
+            </button>
+            <button id="scorescontent" class="scores" class="title"><b>Name: </b><span id="playername"></span><br><b>Wins: </b><span id="wins">0</span><br><b>Losses: </b><span id="losses">0</span><br><br><b>Click to reset score</b>
+            </button>
         </div>
+        <!--Rules Container-->
+        <div class="rulescontainer">
+            <button id="rules" class="rulesbutton" class="title"><img class="pokeball" src="assets/premier ball.png" /> <b>Rules</b></button>
+            <div class="rules"><button id="rulescontent" class="title" >This Quiz is multiple choice consisting of 5 rounds. A wrong answer decreases the timer by 5 seconds. If you complete the quiz without getting a wrong answer, you win!</button></div>
+        </div>
+    </div>
         <!--Quiz Images-->
         <div id="pokecanvas" class="pokecanvas" style="display: none;">
             <img id="bulbasaur" class="pokemon" src="assets/bulbasaur.png" alt="black silhouette of a bulbasaur" />
@@ -82,11 +105,6 @@
             <button class="answer3"><b>C: <span class="textc">Charmander</span></b></button>
             <button class="answer4"><b>D: <span class="textd">Bulbasaur</span></b></button>
         </div>
-
-<!-- end screen -->
-<!--    container for you won vs you scored 0s -->
-<!--    input for name/initials -->
-<!--    save button -->
     </main>
     <script src="script.js"></script>
 </body>

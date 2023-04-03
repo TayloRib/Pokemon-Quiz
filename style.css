@@ -62,7 +62,7 @@ h1{
     font-size: 100%;
 }
 
-.title, .easybutton, .hardbutton, .scorebutton, .rulesbutton, .answer1, .answer2, .answer3, .answer4, .restart {
+.title, .easybutton, .hardbutton, .scorebutton, .rulesbutton, .answer1, .answer2, .answer3, .answer4, .restart, .nameform, .scores {
     display: block;
     background-color: rgb(238, 242, 244);
     padding: 3%;
@@ -76,7 +76,7 @@ h1{
     text-align: left;
 }
 
-.easybutton:hover, .hardbutton:hover, .scorebutton:hover, .rulesbutton:hover {
+.easybutton:hover, .scorebutton:hover, .rulesbutton:hover {
     padding: 6%;
     cursor: pointer;
     padding-left: 20%;
@@ -84,15 +84,31 @@ h1{
     color: white;
 } 
 
-.restart:hover {
+.restart:hover, .resetscore  {
     padding: 6%;
     cursor: pointer;
     background-color: rgb(17, 52, 111);
     color: white;
 }
 
-.answer1:hover, .answer2:hover, .answer3:hover, .answer4:hover{
+.answer1:hover, .answer2:hover, .answer3:hover, .answer4:hover {
     cursor: pointer;
+}
+
+.scorescontainer:hover .scores{
+    display: block;
+}
+
+.scores {
+    margin-left: -100%;
+    margin-top: -140px;
+    width: 100%;
+}
+
+.rules {
+    margin-left: -126%;
+    margin-top: -210px;
+    width: 120%;
 }
 
 .rulescontainer:hover .rules{
@@ -100,12 +116,17 @@ h1{
     display: block;
 }
 
-.rules{
+.rules, .scores {
     display: none;
 }
 
 #rulescontent {
-    font-size: 12px;
+    font-size: 14px;
+}
+
+#scorescontent {
+    text-align: center;
+    font-size: 14;
 }
 
 .restart {
@@ -114,6 +135,10 @@ h1{
 
 .easybutton, .hardbutton, .scorebutton, #rules, .answer1, .answer2, .answer3, .answer4 {
     padding-left: 20%;
+}
+
+.nameform {
+    text-align: center;
 }
 
 .pokeball {
